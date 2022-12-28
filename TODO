@@ -1,0 +1,7 @@
+
+# Visualizer for just the x and y output of the arranger (not the whole animation)
+# Investigate how it works with bigger graphs (N in [0, 1000] and Edges in [0 %, 100 %])
+# Try basic cases two nodes, fully connected ...
+# Get graphs for the loss functions
+# Write the README
+
