@@ -1,3 +1,3 @@
 # Self-Arranging-Networks
 
-<img src="./media/self_arranging.gif.gif" width="1000">
+<img src="./media/self_arranging.gif" width="1000">
