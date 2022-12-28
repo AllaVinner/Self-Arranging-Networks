@@ -58,42 +58,54 @@ def graph_to_plotly(node_pos, connection_matrix):
     return node_list, edge_list
 
 
-def animate_network(node_pos, edge_pos):
+def animate_network(node_pos, edge_pos, nodesize= 10, edge_width=2, width=600, height=600, x_range=None, y_range=None, with_play_button=True):
     T = len(node_pos['x'])
     N = len(node_pos['x'][0])
+    if x_range is None:
+        minx = np.min(node_pos['x'][-1])
+        maxx = np.max(node_pos['x'][-1])
+        x_range = [minx-(maxx-minx)/10, maxx+(maxx-minx)/10]
+    if y_range is None:
+        miny = np.min(node_pos['y'][-1])
+        maxy = np.max(node_pos['y'][-1])
+        y_range = [miny-(maxy-miny)/10, maxy+(maxy-miny)/10]
+        
     fig = go.Figure(
-        data=[go.Scatter(x=node_pos['x'][0], y=node_pos['y'][0],
-                        name="frame",
-                        mode="markers",
-                        line=dict(width=2, color="blue")),
+        data=[
             go.Scatter(x=edge_pos['x'][0], y=edge_pos['y'][0],
-                        name="curve",
                         mode="lines",
-                        line=dict(width=2, color="blue"))
-            ],
-        layout=go.Layout(width=600, height=600,
-                        xaxis=dict(range=[-12,12], autorange=False, zeroline=False),
-                        yaxis=dict(range=[-12, 12], autorange=False, zeroline=False),
+                        name="Edges",
+                        line=dict(color="#FE5F55", width=edge_width)),
+            go.Scatter(x=node_pos['x'][0], y=node_pos['y'][0],
+                        mode="markers",
+                        name="Nodes",
+                        marker=dict(color="#4F6367", size=nodesize))
+                        ],
+        layout=go.Layout(width=width, height=height,
+                        xaxis=dict(range=x_range, autorange=False, zeroline=False),
+                        yaxis=dict(range=y_range, autorange=False, zeroline=False),
                         title="Self Arranging Graf",
                         hovermode="closest",
                         updatemenus=[dict(type="buttons",
                                         buttons=[dict(label="Play",
                                                         method="animate",
-                                                        args=[None])])]
+                                                        args=[None])])
+                                    ] if with_play_button else []
                         ),
         frames=[go.Frame(
-            data=[go.Scatter(
-                x= node_pos['x'][k],
-                y= node_pos['y'][k],
-                mode="markers",
-                name="Nodes",
-                marker=dict(color="#4F6367", size=40)),
+            data=[
                 go.Scatter(
                 x= edge_pos['x'][k],
                 y= edge_pos['y'][k],
                 mode="lines",
                 name="Edges",
-                line=dict(color="#FE5F55", width=2))
+                line=dict(color="#FE5F55", width=edge_width)),
+                go.Scatter(
+                x= node_pos['x'][k],
+                y= node_pos['y'][k],
+                mode="markers",
+                name="Nodes",
+                marker=dict(color="#4F6367", size=nodesize))
             ]) for k in range(T)]
     )
 
@@ -109,14 +121,23 @@ def save_animation_as_gif(fig, file_name='example.gif'):
                 new_fig = plotly.io.from_json(json.dumps(frame.to_plotly_json()))
                 new_fig.write_image(temp_file)
                 writer.append_data( imageio.imread(temp_file))
-    except Exception as e:
-        if os.path.isfile(temp_file):
-            os.close(temp_file)
-            os.remove(temp_file)
-        if os.path.isfile(file_name):
-            os.close(file_name)
-            os.remove(file_name)
     finally:
         os.remove(temp_file)
 
+
+
+def plot_loss(losses, line_width=2, width=1000, height=600):  
+    fig = go.Figure(
+        data=[
+            go.Scatter(x=[i for i in range(len(losses))], y=losses,
+                        mode="lines",
+                        name="Loss",
+                        line=dict(color="#FE5F55", width=line_width)
+            )
+        ],
+        layout=go.Layout(width=width, height=height,
+                        title="Loss of Self Arranging Graf"
+                        )
+    )
+    return fig
 

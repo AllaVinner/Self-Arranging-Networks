@@ -37,9 +37,9 @@ def arrange_graph(G, T = 100, eps = 1e-1, optim = None, verbose = True, general_
     if optim is None:
         optim = torch.optim.Adam([node_x, node_y], lr=1.0)
     if general_loss is None:
-        general_loss =  lf.logexp_2
+        general_loss =  lf.div_log
     if connected_loss is None:
-        connected_loss = lf.div_2
+        connected_loss = lf.div_lin
 
     stats = {} 
     stats['node_to_index'] = node_to_index
@@ -59,7 +59,7 @@ def arrange_graph(G, T = 100, eps = 1e-1, optim = None, verbose = True, general_
         Ec = connected_loss(Con+eps)
 
         E = Eg + Ec
-        L = torch.sum(E)
+        L = torch.mean(E)
 
         optim.zero_grad()
         L.backward()
@@ -75,11 +75,11 @@ def arrange_graph(G, T = 100, eps = 1e-1, optim = None, verbose = True, general_
     Gen = R2*Ig
     Con = R2*Ic
     
-    Eg = general_loss(Gen/np.sqrt(N)+eps)
+    Eg = general_loss(Gen/N+eps)
     Ec = connected_loss(Con+eps)
 
     E = Eg + Ec
-    L = torch.sum(E)
+    L = torch.mean(E)
     if verbose: 
         stats['loss'].append(L.item())
 
