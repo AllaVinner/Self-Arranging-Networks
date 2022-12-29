@@ -56,8 +56,8 @@ In the general loss case we would prefere something similar to $f_2$ as we don't
 If we have $N$ points that are distributed somewhat uniformly on a 2-d plane, then we can expect the radius to scale proportional to $\sqrt{N}$. This is also true for the general distances between points inside the area,  and hence $a=\sqrt{N}$.
 For the connected loss, the $f_1$ seem more appropriate as the loss increases with the square of the distance for big distances (This is the common L2 loss). The minimum should be kept at 1 as we woudl like all of the connected nodes to stay close, and that that distance should not change with bigger $N$. 
 
-<img  src="./media/div_log_loss.png" width="600">
-<img  src="./media/div_squar_loss.png" width="600">
+<img align="center" src="./media/div_log_loss.png" width="800">
+<img align="center" src="./media/div_squar_loss.png" width="800">
 
 
 
