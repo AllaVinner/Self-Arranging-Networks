@@ -38,7 +38,6 @@ $$
 \right \rbrace
 \rightarrow
 \Delta X^2+\Delta Y^2 = R^2
-
 \rightarrow
 \left \lbrace
 \begin{matrix}
