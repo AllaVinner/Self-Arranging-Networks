@@ -37,7 +37,6 @@ $$
 \end{matrix}
 \right \}
 \Delta X^2+\Delta Y^2 = R^2
-
 \left \{
 \begin{matrix}
 L_g(R^2 \times M_g)=L_g \\
