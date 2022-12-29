@@ -52,6 +52,8 @@ $$
 
 ## Loss Functions
 The next step is to define the two loss functions $L_g$ and $L_c$. In general we want functions that are big for small values, then reaches a minimum at some specified point (let us say $1$ for simplicity), and then rise again for larger values. We also would like to punish nodes that are far apart and connected more then two nodes that are far appart and not connected. This means that the $L_c$ should grow faster than $L_g$ for larger values. 
-looking at the two functions $f_g$ and $f_c$
+Two examples of this kind of function is $f_1(r^2)=1/r^2 + r^2-2$ which punishes nodes that are further away more, and $f_2(r^2)=1/r^2 + \log(r^2)-1$ which punished the same nodes less. Both of the functions have the added benifits of having there minimum value at zero which happens for $r=1$. The former makes multiple of these losses easier to combine, and the later makes it easy to change the extreme point as setting $f(\frac{r^2}{a^2})$ will cause the function to reach its minimum at $r=a$. 
+In the general loss case we would prefere something similar to $f_2$ as we don't want to increase the rate of the loss as the nodes get furthere apart. A node should not be too affected by a change of a point far away from it unless they are connected. How far can we expect the nodes to be from eachother? i.e. what should we set $a$ to?
+If we have $N$ points that are distributed somewhat uniformly on a 2-d plane, then we can expect the radius to scale proportional to $\sqrt{N}$. This is also true for the general distances between points inside the area. f
 
 
