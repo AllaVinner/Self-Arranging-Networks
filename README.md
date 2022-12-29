@@ -64,6 +64,14 @@ For the connected loss, the $f_1$ seem more appropriate as the loss increases wi
 </p>
 
 
+## Further work (aka TODO)
+* Investigate how sensitive the algoritm is to the change of loss function?
+  * Can the general and connected loss be the same?
+  * Using linear instead of swuare loss for large values in the connected loss.
+  * Change the minimum point (i.e. move $a$).
+* Investigate size of netowrk ($N$) and percentage of connectivness.
 
+## Structure of Repository
+The repository contain three main folders `src`, `notebooks`, and `data`. The `src` folder contains the python files with the functions used in the notebooks. Here the main file is `arrangin_network.py` which contain the function `arrange_network` which implements the algoritm. The `notebooks` folder contains jupyter notebooks that investigates the algoritms and functions given int `src`. If repo is cloned, this is a good place to start. Finally `data` contains the data used in the notebook examples. 
 
 
