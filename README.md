@@ -36,13 +36,17 @@ $$
 \bar{y} \rightarrow \bar{y}-\bar{y}^T=\Delta Y\\
 \end{matrix}
 \right \rbrace
+\rightarrow
 \Delta X^2+\Delta Y^2 = R^2
+
+\rightarrow
 \left \lbrace
 \begin{matrix}
 L_g(R^2 \times M_g)=L_g \\
 L_c(R^2 \times M_c)=L_c\\
 \end{matrix}
 \right \rbrace
+\rightarrow
 L_g+L_c = L
 $$
 
