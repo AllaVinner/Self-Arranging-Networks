@@ -35,14 +35,14 @@ $$
 \bar{x} \rightarrow \bar{x}-\bar{x}^T=\Delta X \\
 \bar{y} \rightarrow \bar{y}-\bar{y}^T=\Delta Y\\
 \end{matrix}
-\right \}
+\right \lbrace
 \Delta X^2+\Delta Y^2 = R^2
-\left \{
+\left \rbrace
 \begin{matrix}
 L_g(R^2 \times M_g)=L_g \\
 L_c(R^2 \times M_c)=L_c\\
 \end{matrix}
-\right \}
+\right \lbrace
 L_g+L_c = L
 $$
 
