@@ -2,7 +2,7 @@
 
 ## Summary
 
-<img align="right" src="./media/self_arranging_cropped.gif" width="320">
+<img align="right" src="./media/self_arranging_cropped.gif" width="300">
 Given a graph, i.e. a set of nodes and a set of ordered pairs of nodes, how can one give each node a 2-D position such that they are easily plotted as a graph? The proposed solution uses the PyTorch library to create a gradient decent based optimizers that finds a minimum loss configuration of the node positions. The solution uses two losses, one between each node and each other node (general loss), and one between each node and all the adjacent nodes (connected loss). The general and connected loss are given as:
 
 $$ 
