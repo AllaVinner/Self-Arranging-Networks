@@ -23,7 +23,7 @@ def get_connection_matrix(G, node_to_index):
     return connected
 
 
-def arrange_graph(G, T = 100, eps = 1e-1, optim = None, verbose = True, general_loss = None, connected_loss = None):
+def arrange_graph(G, T = 100, eps = 1e-1, verbose = True, general_loss = None, connected_loss = None):
     """
     Returns two vectors with the x and y positions of the nodes in G. 
     G is expected to be a graph from the networkx library.
@@ -38,8 +38,6 @@ def arrange_graph(G, T = 100, eps = 1e-1, optim = None, verbose = True, general_
     Mc = get_connection_matrix(G, node_to_index)
 
     # Set optimizer and loss functions    
-    if optim is None:
-        optim = torch.optim.Adam([node_x, node_y], lr=1.0)
     if general_loss is None:
         general_loss =  lf.div_log
     if connected_loss is None:
@@ -58,6 +56,7 @@ def arrange_graph(G, T = 100, eps = 1e-1, optim = None, verbose = True, general_
     # Init node coordinates
     node_x = torch.normal(0, np.sqrt(N), (N,1), requires_grad=True, dtype=torch.float32)
     node_y = torch.normal(0, np.sqrt(N), (N,1), requires_grad=True, dtype=torch.float32)
+    optim = torch.optim.Adam([node_x, node_y], lr=1.0)
 
     # Training
     for t in range(T-1):
