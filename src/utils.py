@@ -58,17 +58,17 @@ def graph_to_plotly(node_pos, connection_matrix):
     return node_list, edge_list
 
 
-def animate_network(node_pos, edge_pos, nodesize= 10, edge_width=2, width=600, height=600, x_range=None, y_range=None, minimum_layout=False):
+def animate_network(node_pos, edge_pos, nodesize= 10, edge_width=2, width=600, height=600, x_range=None, y_range=None, minimum_layout=False, padding_scale=0.1):
     T = len(node_pos['x'])
     N = len(node_pos['x'][0])
     if x_range is None:
         minx = np.min(node_pos['x'][-1])
         maxx = np.max(node_pos['x'][-1])
-        x_range = [minx-(maxx-minx)/10, maxx+(maxx-minx)/10]
+        x_range = [minx-(maxx-minx)/10, maxx+(maxx-minx)*padding_scale]
     if y_range is None:
         miny = np.min(node_pos['y'][-1])
         maxy = np.max(node_pos['y'][-1])
-        y_range = [miny-(maxy-miny)/10, maxy+(maxy-miny)/10]
+        y_range = [miny-(maxy-miny)/10, maxy+(maxy-miny)*padding_scale]
         
     fig = go.Figure(
         data=[
