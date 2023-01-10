@@ -1,3 +1,4 @@
 # Investigate how it works with bigger graphs (N in [0, 1000] and Edges in [0 %, 100 %])
 # Try basic cases two nodes, fully connected ...
 #   How to create a ranom graph
+Graph of sizes as number of nods get larger
