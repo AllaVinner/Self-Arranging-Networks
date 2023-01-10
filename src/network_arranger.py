@@ -8,8 +8,8 @@ def get_index_maps(G):
     index_to_node = {}
     current_i = 0
     for node in G.nodes:
-        node_to_index[str(node)] = current_i
-        index_to_node[current_i] = str(node)
+        node_to_index[node] = current_i
+        index_to_node[current_i] = node
         current_i += 1
     return node_to_index, index_to_node
 
@@ -43,6 +43,11 @@ def arrange_graph(G, T = 100, eps = 1e-1, verbose = True, general_loss = None, c
     if connected_loss is None:
         connected_loss = lf.div_lin
 
+    # Init node coordinates
+    node_x = torch.normal(0, np.sqrt(N), (N,1), requires_grad=True, dtype=torch.float32)
+    node_y = torch.normal(0, np.sqrt(N), (N,1), requires_grad=True, dtype=torch.float32)
+    optim = torch.optim.Adam([node_x, node_y], lr=1.0)
+    
     # Init stats
     stats = {} 
     stats['node_to_index'] = node_to_index
@@ -53,10 +58,7 @@ def arrange_graph(G, T = 100, eps = 1e-1, verbose = True, general_loss = None, c
         stats['positions'][0, : , 0] = node_x.clone().detach()[:, 0]
         stats['positions'][0, : , 1] = node_y.clone().detach()[:, 0]
 
-    # Init node coordinates
-    node_x = torch.normal(0, np.sqrt(N), (N,1), requires_grad=True, dtype=torch.float32)
-    node_y = torch.normal(0, np.sqrt(N), (N,1), requires_grad=True, dtype=torch.float32)
-    optim = torch.optim.Adam([node_x, node_y], lr=1.0)
+
 
     # Training
     for t in range(T-1):

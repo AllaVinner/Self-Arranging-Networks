@@ -58,7 +58,7 @@ def graph_to_plotly(node_pos, connection_matrix):
     return node_list, edge_list
 
 
-def animate_network(node_pos, edge_pos, nodesize= 10, edge_width=2, width=600, height=600, x_range=None, y_range=None, with_play_button=True):
+def animate_network(node_pos, edge_pos, nodesize= 10, edge_width=2, width=600, height=600, x_range=None, y_range=None, minimum_layout=False):
     T = len(node_pos['x'])
     N = len(node_pos['x'][0])
     if x_range is None:
@@ -90,7 +90,7 @@ def animate_network(node_pos, edge_pos, nodesize= 10, edge_width=2, width=600, h
                                         buttons=[dict(label="Play",
                                                         method="animate",
                                                         args=[None])])
-                                    ] if with_play_button else []
+                                    ] if not minimum_layout else []
                         ),
         frames=[go.Frame(
             data=[
@@ -110,6 +110,7 @@ def animate_network(node_pos, edge_pos, nodesize= 10, edge_width=2, width=600, h
     )
 
     return fig
+
 
 
 def save_animation_as_gif(fig, file_name='example.gif'):
