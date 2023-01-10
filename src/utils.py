@@ -75,10 +75,12 @@ def animate_network(node_pos, edge_pos, nodesize= 10, edge_width=2, width=600, h
             go.Scatter(x=edge_pos['x'][0], y=edge_pos['y'][0],
                         mode="lines",
                         name="Edges",
+                        showlegend = not minimum_layout,
                         line=dict(color="#FE5F55", width=edge_width)),
             go.Scatter(x=node_pos['x'][0], y=node_pos['y'][0],
                         mode="markers",
                         name="Nodes",
+                        showlegend = not minimum_layout,
                         marker=dict(color="#4F6367", size=nodesize))
                         ],
         layout=go.Layout(width=width, height=height,
@@ -99,12 +101,14 @@ def animate_network(node_pos, edge_pos, nodesize= 10, edge_width=2, width=600, h
                 y= edge_pos['y'][k],
                 mode="lines",
                 name="Edges",
+                showlegend = not minimum_layout,
                 line=dict(color="#FE5F55", width=edge_width)),
                 go.Scatter(
                 x= node_pos['x'][k],
                 y= node_pos['y'][k],
                 mode="markers",
                 name="Nodes",
+                showlegend = not minimum_layout,
                 marker=dict(color="#4F6367", size=nodesize))
             ]) for k in range(T)]
     )
