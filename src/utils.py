@@ -64,11 +64,11 @@ def animate_network(node_pos, edge_pos, nodesize= 10, edge_width=2, width=600, h
     if x_range is None:
         minx = np.min(node_pos['x'][-1])
         maxx = np.max(node_pos['x'][-1])
-        x_range = [minx-(maxx-minx)/10, maxx+(maxx-minx)*padding_scale]
+        x_range = [minx-(maxx-minx)*padding_scale, maxx+(maxx-minx)*padding_scale]
     if y_range is None:
         miny = np.min(node_pos['y'][-1])
         maxy = np.max(node_pos['y'][-1])
-        y_range = [miny-(maxy-miny)/10, maxy+(maxy-miny)*padding_scale]
+        y_range = [miny-(maxy-miny)*padding_scale, maxy+(maxy-miny)*padding_scale]
         
     fig = go.Figure(
         data=[
@@ -86,7 +86,7 @@ def animate_network(node_pos, edge_pos, nodesize= 10, edge_width=2, width=600, h
         layout=go.Layout(width=width, height=height,
                         xaxis=dict(range=x_range, autorange=False, zeroline=False),
                         yaxis=dict(range=y_range, autorange=False, zeroline=False),
-                        title="Self Arranging Graf",
+                        title="Self Arranging Graf" if not minimum_layout else None,
                         hovermode="closest",
                         updatemenus=[dict(type="buttons",
                                         buttons=[dict(label="Play",
