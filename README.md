@@ -63,6 +63,15 @@ For the connected loss, the $f_1$ seem more appropriate as the loss increases wi
     <img src="./media/div_squar_loss.png" width="800">
 </p>
 
+## Different Graphs
+But how well is this algorithm working with extreme graphs? Here are some examples of empty and complete graphs of various sizes. For these kinds of graphs it is not clear what the disiered behavior is.
+
+<p align="center">
+    <img src="./media/complete_graphs_1_5.gif" width="800">
+    <img src="./media/empty_graphs_1_5.gif" width="800">
+</p>
+
+
 
 ## Further work (aka TODO)
 * Investigate how sensitive the algoritm is to the change of loss function?
