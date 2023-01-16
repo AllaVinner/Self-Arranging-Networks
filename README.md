@@ -71,7 +71,10 @@ But how well is this algorithm working with extreme graphs? Here are some exampl
     <img src="./media/empty_graphs_1_5.gif" width="800">
 </p>
 
-
+<p align="center">
+    <img src="./media/complete_graphs_10_50.gif" width="800">
+    <img src="./media/empty_graphs_10_50.gif" width="800">
+</p>
 
 ## Further work (aka TODO)
 * Investigate how sensitive the algoritm is to the change of loss function?
