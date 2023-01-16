@@ -63,7 +63,7 @@ For the connected loss, the $f_1$ seem more appropriate as the loss increases wi
     <img src="./media/div_squar_loss.png" width="800">
 </p>
 
-## Different Graphs
+## Varoious Graphs
 But how well is this algorithm working with extreme graphs? Here are some examples of empty and complete graphs of various sizes. For these kinds of graphs it is not clear what the disiered behavior is.
 
 <p align="center">
