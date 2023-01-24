@@ -1,5 +1,6 @@
 import torch
 import numpy as np
+import networkx as nx
 import src.loss_functions as lf
 
 
@@ -185,3 +186,14 @@ def arrange_graph_until_stable(G, step_limit = 0.01, eps = 1e-1, general_loss = 
     return (node_x.clone().detach()[:,0],
             node_y.clone().detach()[:,0],
             stats)
+
+
+def customize_graph(num_nodes: int, connectivness: float = 0.5):
+    G = nx.empty_graph(num_nodes) 
+    for n1 in range(num_nodes):
+        for n2 in range(n1, num_nodes):
+            if connectivness > np.random.rand():
+                G.add_edge(n1, n2)
+                G.add_edge(n2, n1)
+    return G
+
